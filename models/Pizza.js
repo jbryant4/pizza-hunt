@@ -8,31 +8,32 @@ const { Schema, model } = require('mongoose');
 // The pizza's suggested size
 // The pizza's toppings
 
-const PizzaSchema = new Schema({
-    pizzaName: {
-        type: String
-    },
-    createdBy: {
-        type: String
-    },
-    createAt: {
-        type: Date,
-        default: Date.now
-    },
-    size: {
-        type: String,
-        default: 'Large'
-    },
-    toppings: [],
-    comments: [
-        {
-            type: Schema.Types.ObejectId,
-            ref: 'Comment'
-        }
-    ],
-},
+const PizzaSchema = new Schema(
     {
-        toJson: {
+        pizzaName: {
+            type: String
+        },
+        createdBy: {
+            type: String
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+        },
+        size: {
+            type: String,
+            default: 'Large'
+        },
+        toppings: [],
+        comments: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Comment'
+            }
+        ]
+    },
+    {
+        toJSON: {
             virtuals: true,
         },
         id: false
